@@ -7,6 +7,8 @@ const { DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD } = proce
 const app = express()
 const port = 3333
 
+const { DB_HOST, DB_NAME, DB_USER, DB_PASSWORD } = process.env
+
 app.use(cors())
 app.use(express.json())
 
@@ -23,6 +25,7 @@ app.get("/", (request, response) => {
 
    // (people)
 })
+
 
 
 app.post("/login", (request, response) => {
@@ -71,9 +74,9 @@ app.listen(port, () => {
 })
 
 const database = mysql.createPool({
-    host: "benserverplex.ddns.net",
-    user: "alunos",
-    password: "senhaAlunos",
-    database: "web_02ma",
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
     connectionLimit: 10
   })
